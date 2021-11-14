@@ -1,5 +1,5 @@
 - git:
-    repo: 'http://deploy:8BFWP_Hws2RT3xseyieG@192.168.0.32/root/back-end.git'
+    repo: 'http://gitlabtoken:xxxxxxxx@192.168.0.32/root/back-end.git'
     dest: '/var/www/gitlab-deployment/repos/'
     force: yes
     update: yes

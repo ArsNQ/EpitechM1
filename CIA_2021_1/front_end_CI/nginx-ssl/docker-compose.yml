@@ -13,7 +13,7 @@ services:
             - 443:443
     certbot:
         image: certbot/certbot:latest
-        command: certonly --webroot --keep-until-expiring --webroot-path=/var/www/certbot --email debusschere.antoine@outlook.fr --agree-tos --no-eff-email -d nginx.drivescan.site -d www.nginx.drivescan.site
+        command: certonly --webroot --keep-until-expiring --webroot-path=/var/www/certbot --email quentin.tridon@epitech.eu --agree-tos --no-eff-email -d nginx.drivescan.site -d www.nginx.drivescan.site
         volumes:
             - ./certbot/conf:/etc/letsencrypt
             - ./certbot/logs:/var/log/letsencrypt

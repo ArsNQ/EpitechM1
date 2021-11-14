@@ -17,21 +17,21 @@ build:
         - build
         - node_modules/
 
-#test:
-#    stage: test
-#    image: weboaks/node-karma-protractor-chrome
-#    script:
-#        - yarn install --silent
-#        - yarn run test
-#    allow_failure: true
+test:
+    stage: test
+    image: weboaks/node-karma-protractor-chrome
+    script:
+        - yarn install --silent
+        - yarn run test
+    allow_failure: true
 
-#lint: 
-#    stage: test
-#    image: node:11-alpine
-#    script:
-#        - yarn install --silent
-#        - yarn run lint
-#    allow_failure: true
+int: 
+    stage: test
+    image: node:11-alpine
+    script:
+        - yarn install --silent
+        - yarn run lint
+    allow_failure: true
   
 docker:
   stage: docker-build
