@@ -24,8 +24,8 @@ router.get('/auth', (req, res) => {
 
 
 passport.use(new TwitterTokenStrategy({
-        consumerKey: 'Rr5pY03N3mbFOjnP4XXLd1EMH',
-        consumerSecret: 'zWTeeKcUsUORg6BF72gujrL35QJRGVLN1t7IekSfyPc9Lr48hv'
+        consumerKey: 'xxxxxxx',
+        consumerSecret: 'xxxxxx'
     }, (token, tokenSecret, profile, done) => {
         return User.findOne({twitter_id: profile.id}, function (err, foundUser) {
             if (err) {
@@ -113,8 +113,8 @@ router.get('/token-twitter', (req, res) => {
     return request.post({
         url: 'https://api.twitter.com/oauth/request_token',
         oauth: {
-            consumer_key: "Rr5pY03N3mbFOjnP4XXLd1EMH",
-            consumer_secret:"zWTeeKcUsUORg6BF72gujrL35QJRGVLN1t7IekSfyPc9Lr48hv"
+            consumer_key: "xxxxxxxx",
+            consumer_secret:"xxxxxxxx"
         }
     }, function (err, r, response) {
         if (err) {
@@ -129,8 +129,8 @@ router.post('/login-twitter', (req, res, next) => {
     return request.post({
         url: 'https://api.twitter.com/oauth/access_token',
         oauth: {
-            consumer_key: "Rr5pY03N3mbFOjnP4XXLd1EMH",
-            consumer_secret: "zWTeeKcUsUORg6BF72gujrL35QJRGVLN1t7IekSfyPc9Lr48hv",
+            consumer_key: "xxxxxxxxx",
+            consumer_secret: "xxxxxxxxxxx",
             token: req.body.oauth_token,
             verifier: req.body.oauth_verifier
         }
