@@ -1,0 +1,18 @@
+---
+# tasks file for deploy
+
+- git:
+    repo: "{{ repo }}"
+    dest: "{{ dir }}"
+    force: yes
+    update: yes
+
+- name: copy docker-compose
+  copy:
+    src: docker-compose.yml
+    dest: "{{ dir }}"
+
+- name: docker build Gitlab
+  command: docker-compose up -d --force-recreate
+  args:
+    chdir: "{{ dir }}"

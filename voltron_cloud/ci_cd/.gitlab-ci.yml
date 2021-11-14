@@ -1,0 +1,37 @@
+image: alpine:3.14.0
+
+stages:
+  - Build
+  - Deploy
+
+#Build:
+  stage: Build
+  script:
+  cache:
+    paths:
+      -
+  artifacts:
+    paths:
+      -
+    expire_in: 1 week
+    when: always
+
+Ansible-Deploy:
+  stage: Deploy
+  image: mullnerz/ansible-playbook:2.9.1
+  only :
+    - master
+  when : manual
+  before_script:
+    #Generating the SSH key
+    - mkdir -p ~/.ssh
+    - echo -e "$PRIVATE_SSH_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - export IMAGE_NAME="$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME"
+    - export DEPLOY_TARGET=Production
+    - cd ansible
+  script:
+    #Executing the ansible-playbook
+    - chmod -v 700 $(pwd)
+    - ansible-playbook --key-file ~/.ssh/id_rsa  playbook.yml -i hosts

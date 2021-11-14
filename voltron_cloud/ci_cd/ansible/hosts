@@ -1,0 +1,10 @@
+[all:vars]
+ansible_user=admcloud
+
+#IP Host front
+[WebHostProd01]
+40.89.171.253
+
+#IP Host back
+[WebHostProd02]
+40.89.169.27

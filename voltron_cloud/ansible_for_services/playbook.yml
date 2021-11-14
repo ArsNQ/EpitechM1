@@ -1,0 +1,39 @@
+# Base role
+- hosts: all
+  become: true
+  become_user: root
+  connection: ssh
+  roles:
+    - base
+
+# Portainer role
+- hosts: portainer
+  connection: ssh
+  become: true
+  become_user: root
+  roles:
+    - portainer
+
+#  gitlab role
+- hosts: gitlab
+  connection: ssh
+  become: true
+  become_user: root
+  roles:
+    - gitlab
+
+# Nexus role
+- hosts: nexus
+  connection: ssh
+  become: true
+  become_user: root
+  roles:
+    - nexus
+
+# Docker role
+- hosts: grafana
+  connection: ssh
+  become: true
+  become_user: root
+  roles:
+    - grafana

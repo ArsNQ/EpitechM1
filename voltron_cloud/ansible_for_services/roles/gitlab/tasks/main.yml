@@ -1,0 +1,21 @@
+---
+# tasks file for gitlab
+#- name: Copying the Docker-Compose file.
+#  copy:
+#    src: docker-compose.yml
+#    dest: /etc/
+#
+#- name: docker build repos
+#  command: docker-compose up --force-recreate -d
+#  args:
+#    chdir: /etc/
+
+- name: docker build Gitlab
+  command: docker run --detach --hostname gitlab.example.com  --publish 443:443 --publish 80:80 --publish 44:22 --name gitlab --restart always --volume /data/gitlab/config:/etc/gitlab:Z --volume /data/gitlab/logs:/var/log/gitlab:Z --volume /data/gitlab/data:/var/opt/gitlab:Z gitlab/gitlab-ee:latest
+
+- name: dsocker build volume
+  command: docker volume create gitlab-runner-config
+
+- name: docker build Gitlab-Runner
+  command: docker run -d --name gitlab-runner --restart always -v /var/run/docker.sock:/var/run/docker.sock -v gitlab-runner-config:/etc/gitlab-runner gitlab/gitlab-runner:latest
+

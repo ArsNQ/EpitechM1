@@ -1,0 +1,25 @@
+*version: '3.7'
+
+services:
+  web:
+    image: 'gitlab/gitlab-ee:latest'
+    restart: always
+    hostname: 'gitlab.example.com'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'https://gitlab.example.com'
+        # Add any other gitlab.rb configuration here, each on its own line
+    ports:
+      - '80:80'
+      - '443:443'
+      - '22:22'
+    volumes:
+      - './etc/config:/etc/gitlab'
+      - './etc/logs:/var/log/gitlab'
+      - './etc/data:/var/opt/gitlab'
+
+  runner:
+    restart: always
+    image: gitlab/gitlab-runner:alpine
+    volumes:
+      - ./gitlab/runner:/etc/gitlab-runner:Z

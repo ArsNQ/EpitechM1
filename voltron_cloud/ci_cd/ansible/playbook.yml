@@ -1,0 +1,10 @@
+# Deploy role
+- hosts: WebHostProd01
+  vars:
+  - dir: /tmp/gitlab-deployment/group#Indicate your group number#/
+  - repo: 'https://deploy:W5LsQSaVAeTx9xAMsYTn@gitlab-voltron.francecentral.cloudapp.azure.com/#indicate the nomenclature of the git directory#'
+  connection: ssh
+  become: true
+  become_user: root
+  roles:
+    - deploy
